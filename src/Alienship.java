@@ -92,19 +92,19 @@ public class Alienship {
 //
 //    }
 
-    public  void shipSetPosition(){
+    public  void shipSetPosition() {
         int randomship = 0;
         int randomdir = 0;
 
 
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
 
-            boolean flag =true;
+            boolean flag = true;
             randomship = (int) (Math.random() * 64) + 0;
             randomdir = (int) (Math.random() * 2) + 0;
 
-            while (flag ) {
-                if ((temparray[0] != 0) && (temparray[1] != 0) && (temparray[1] != 0)) {
+            while (flag) {
+                if ((temparray[0] != 0) && (temparray[1] != 0) && (temparray[2] != 0)) {
                     if (shipposition.contains(temparray[0]) == false && shipposition.contains(temparray[1]) == false
                             && shipposition.contains(temparray[2]) == false) {
 
@@ -121,89 +121,67 @@ public class Alienship {
 
                     }
                 }
-                else
+                else{
                     flag=false;
-            }
-
-
-//            while(flag==1){
-//
-//                if (shipposition.contains(randomship)) {
-//                    randomship = (int) (Math.random() * 64) + 0;
-//                }
-//
-//                else {
-//                    flag=0;
-//                }
-//            }
-                System.out.println("direction: " + randomdir);
-                System.out.println(randomship);
-
-                // heck condition and insert random values to temarray[]..
-
-                if (randomdir == 0) {
-                    if ((randomship % 8) == 0) {
-                        temparray[0] = randomship;
-                        temparray[1] = randomship + 1;
-                        temparray[2] = randomship + 1;
-
-                    } else if (((randomship + 1) % 8) == 0) {
-
-                        temparray[0] = randomship - 2;
-                        temparray[1] = randomship - 1;
-                        temparray[2] = randomship;
-
-                    } else {
-                        temparray[0] = randomship - 1;
-                        temparray[1] = randomship;
-                        temparray[2] = randomship + 1;
-
-                    }
-                } else {
-                    if (randomship < 8) {
-                        temparray[0] = randomship;
-                        temparray[1] = randomship + 8;
-                        temparray[2] = randomship + 16;
-
-                    } else if (randomship > 55) {
-                        temparray[0] = randomship - 16;
-                        temparray[1] = randomship - 8;
-                        temparray[2] = randomship;
-
-                    } else {
-                        temparray[0] = randomship - 8;
-                        temparray[1] = randomship;
-                        temparray[2] = randomship + 8;
-
-
-                    }
                 }
+            }
+            System.out.println("direction: " + randomdir);
+            System.out.println("umer: "+ randomship);
+
+            if (randomdir == 0) {
+                if ((randomship % 8) == 0) {
+                    temparray[0] = randomship;
+                    temparray[1] = randomship + 1;
+                    temparray[2] = randomship + 1;
+
+                } else if (((randomship + 1) % 8) == 0) {
+
+                    temparray[0] = randomship - 2;
+                    temparray[1] = randomship - 1;
+                    temparray[2] = randomship;
+
+                } else {
+                    temparray[0] = randomship - 1;
+                    temparray[1] = randomship;
+                    temparray[2] = randomship + 1;
+
+                }
+            } else {
+                if (randomship < 8) {
+                    temparray[0] = randomship;
+                    temparray[1] = randomship + 8;
+                    temparray[2] = randomship + 16;
+
+                } else if (randomship > 55) {
+                    temparray[0] = randomship - 16;
+                    temparray[1] = randomship - 8;
+                    temparray[2] = randomship;
+
+                } else {
+                    temparray[0] = randomship - 8;
+                    temparray[1] = randomship;
+                    temparray[2] = randomship + 8;
+
+
+                }
+            }
 
             // Insert the the random values into array list
 
-//            if ( shipposition.contains(temparray[0])==false && shipposition.contains(temparray[1])==false
-//                    && shipposition.contains(temparray[2])==false ) {
-//
-//                shipposition.add(temparray[0]);
-//                shipposition.add(temparray[1]);
-//                shipposition.add(temparray[2] );
-//
-//            }
-//            else{
-//
-//            }
+            if ((temparray[0] == 0) && (temparray[1] == 0) && (temparray[2] == 0)) {
+                if (shipposition.contains(temparray[0]) == false && shipposition.contains(temparray[1]) == false
+                        && shipposition.contains(temparray[2]) == false) {
 
+                    shipposition.add(temparray[0]);
+                    shipposition.add(temparray[1]);
+                    shipposition.add(temparray[2]);
+                }
+            }
 
+            for (int l = 0; l < shipposition.size(); l++) {
+                System.out.println(shipposition.get(l));
+            }
         }
-
-
-        for (int i = 0; i < shipposition.size(); i++) {
-            System.out.println(shipposition.get(i));
-        }
-
-
-
     }
-
-
 }
+
