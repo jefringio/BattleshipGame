@@ -18,11 +18,12 @@ public class Main {
     }
     public static void main(String[] args) {
             String userinput;
+            int regexnumber=0;
             int xLength = 8;
             int yLength = 8;
             System.out.println("Hello and welcome to Battleship!");
             System.out.println("There are 3 hidden ships.");
-            System.out.println("Please enter x and y coordinates (max coordinate of 0-7 ) you would " +
+            System.out.println("Please enter values(min  a0-a7 and max h0 to h7  ) you would " +
                     "like to hit!\n");
 
         // object of ship is created
@@ -41,10 +42,10 @@ public class Main {
                     userinput = coordinate.nextLine();
 
                 //Alpha to digits call
-                    ship.convertRegexToNumber(userinput);
+                  regexnumber =  ship.convertRegexToNumber(userinput);
 
                 // check whether HIT or MISS
-                    ship.checkhitmiss();
+                    ship.checkhitmiss(regexnumber);
             }
         }
 

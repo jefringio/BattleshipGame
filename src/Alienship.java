@@ -14,9 +14,11 @@ public class Alienship {
     int pos;
     int guess = 0;
     int invalidguess = 0;
-    boolean flag = true;
+    boolean flag = true , check=true;
 
-    ArrayList<Integer> shipposition = new ArrayList<Integer>();
+
+
+    static ArrayList<Integer> shipposition = new ArrayList<Integer>();
     ArrayList<Integer> ship1 = new ArrayList<Integer>();
     ArrayList<Integer> ship2 = new ArrayList<Integer>();
     ArrayList<Integer> ship3 = new ArrayList<Integer>();
@@ -25,29 +27,33 @@ public class Alienship {
 ///////////////
     //Alpha to digits converter
 /////////////
-    public void convertRegexToNumber(String value) {
-        if (Pattern.matches("[a-h|A-H][0-7]", value)) {
+    public int convertRegexToNumber(String value) {
 
-            String[] firststring = value.split("(?!^)");
-            String ch = firststring[0];
-            System.out.println("char----" + ch);
-            int stringvalue = ch.charAt(0) - 97;
-            System.out.println("characterval---" + stringvalue);
-            int numbervalue = Integer.parseInt(String.valueOf(firststring[1]));
-            System.out.println("imtval---" + numbervalue);
-            input = (stringvalue * 8) + numbervalue;
-            System.out.println(input);
-        } else {
-            System.out.println("Enter in specified format!!!!!!");
-        }
+            if (Pattern.matches("[a-h|A-H][0-7]", value)) {
 
+                String[] firststring = value.split("(?!^)");
+                String ch = firststring[0];
+
+                int stringvalue = ch.charAt(0) - 97;
+
+                int numbervalue = Integer.parseInt(String.valueOf(firststring[1]));
+
+                input = (stringvalue * 8) + numbervalue;
+
+//            System.out.println(input);
+            } else {
+                System.out.println("Enter input in specified format!!!!!!");
+
+            }
+
+        return input;
 
     }
 //////////
     // checks the value is a hit or miss///
 ///////////////////
 
-    public void checkhitmiss() {
+    public void checkhitmiss( int input) {
 
         if (shipposition.contains(input)) {
 
@@ -58,7 +64,7 @@ public class Alienship {
                     invalidguess++;
                 } else {
                     ship1.add(input);
-                    System.out.println("hit");
+                    System.out.println("## Hit ##");
                     guess++;
                 }
                 if (ship1.size() == 3) {
@@ -70,7 +76,7 @@ public class Alienship {
                     invalidguess++;
                 } else {
                     ship2.add(input);
-                    System.out.println("hit");
+                    System.out.println("## Hit ##");
                     guess++;
                 }
                 if (ship2.size() == 3) {
@@ -82,7 +88,7 @@ public class Alienship {
                     invalidguess++;
                 } else {
                     ship3.add(input);
-                    System.out.println("hit");
+                    System.out.println("## Hit ##");
                     guess++;
                 }
                 if (ship3.size() == 3) {
@@ -91,12 +97,12 @@ public class Alienship {
             }
             if ((ship1.size() == 3) && (ship2.size() == 3) && (ship3.size() == 3)) {
                 shipkilled = true;
-                System.out.println("You won the GAME!!!!!");
-                System.out.println("and the total valid guesses are : " + (guess));
-                System.out.println("and the total guesses with multiple entry are : " + (guess + invalidguess));
+                System.out.println("You WON the GAME!!!!!");
+                System.out.println("The total valid guesses are : " + (guess));
+                System.out.println("The total guesses with multiple entry are : " + (guess + invalidguess));
             }
         } else {
-            System.out.println("miss");
+            System.out.println("## Miss ##");
             guess++;
         }
     }
@@ -104,7 +110,9 @@ public class Alienship {
     /////check-condition function is called.......
 ///////////
 
-    public int[] checkCondition(int randomship, int randomdir) {
+    public int[] checkCondition(int randomship , int randomdir) {
+
+
         int[] temparray = new int[3];
         if (randomdir == 0) {
             if ((randomship % 8) == 0) {
@@ -146,23 +154,26 @@ public class Alienship {
 ///////
     // Ship positioning function
 ///////
-    public void shipSetPosition() {
-        int randomship = 0;
-        int randomdir = 0;
 
+    public void shipSetPosition() {
+
+        int randomship = 0;
+        int randomdir =0;
 
         for (int i = 0; i < 3; i++) {
 
             boolean flag = true;
             randomship = (int) (Math.random() * 64) + 0;
-            randomdir = (int) (Math.random() * 2) + 0;
+            randomdir= (int) (Math.random() * 2) + 0;
+
 
             ////////////////
-                System.out.println("direction: " + randomdir);
-                System.out.println("numer: " + randomship);
+//                System.out.println("direc= "+ randomdir);
+//                System.out.println("numer: " + randomship);
+
             ////////////////
 
-            newarray = checkCondition(randomship, randomdir);
+            newarray = checkCondition(randomship,randomdir);
 
             // Insert the the random values into array list
             while (flag) {
@@ -177,18 +188,18 @@ public class Alienship {
                 else {
                     randomship = (int) (Math.random() * 64) + 0;
                 ////////////////
-                        System.out.println("2-numer: " + randomship);
+//                        System.out.println("2-numer: " + randomship);
                 //////////////////
-                    newarray = checkCondition(randomship, randomdir);
+                    newarray = checkCondition(randomship,randomdir);
 
 
                 }
             }
         }
         //////////////////
-            for (int l = 0; l < shipposition.size(); l++) {
-                System.out.println(shipposition.get(l));
-            }
+//            for (int l = 0; l < shipposition.size(); l++) {
+//                System.out.println(shipposition.get(l));
+//            }
         //////////////////
 
     }
