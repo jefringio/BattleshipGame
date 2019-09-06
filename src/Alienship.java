@@ -10,11 +10,12 @@ public class Alienship {
 
     int input;
     int[] newarray = new int[3];
-    boolean shipkilled = false;
+    static boolean shipkilled = false;
     int pos;
     int guess = 0;
     int invalidguess = 0;
     boolean flag = true , check=true;
+    static int testpass=0;
 
 
 
@@ -65,6 +66,7 @@ public class Alienship {
                 } else {
                     ship1.add(input);
                     System.out.println("## Hit ##");
+                    testpass=1;
                     guess++;
                 }
                 if (ship1.size() == 3) {
@@ -77,6 +79,7 @@ public class Alienship {
                 } else {
                     ship2.add(input);
                     System.out.println("## Hit ##");
+                    testpass=1;
                     guess++;
                 }
                 if (ship2.size() == 3) {
@@ -89,6 +92,7 @@ public class Alienship {
                 } else {
                     ship3.add(input);
                     System.out.println("## Hit ##");
+                    testpass=1;
                     guess++;
                 }
                 if (ship3.size() == 3) {
@@ -103,6 +107,7 @@ public class Alienship {
             }
         } else {
             System.out.println("## Miss ##");
+            testpass=0;
             guess++;
         }
     }
